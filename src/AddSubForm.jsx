@@ -27,4 +27,4 @@ function AddSubForm() {
 
 export default AddSubForm;
 
-// TODO: Add form validation for all inputs.
+// TODO: Add form validation for all inputs. Clicking submit will save data locally to users browser and display in a card with all the information that was submitted.

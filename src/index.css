@@ -1,0 +1,61 @@
+:root {
+  /*Dark Mode colors*/
+
+  --Rich-black: #000717;
+  --Oxford-blue: #03254e;
+  --Ultra-violet: #545677;
+  --White-smoke: whitesmoke;
+  --French-grey: #d0ccd0;
+}
+
+body {
+  background-color: var(--Rich-black);
+  color: var(--White-smoke);
+}
+h1 {
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+}
+
+.add-sub {
+  background-color: var(--Oxford-blue);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: black 0 3px 5px;
+  font-size: 1rem;
+  height: 40px;
+  padding: 0 10px;
+  pointer-events: auto;
+  width: auto;
+  border: 0;
+  transition: box-shadow 0.2s;
+}
+
+.add-sub:hover {
+  box-shadow: #545677ad 0 3px 8px;
+}
+
+.delete-sub {
+  background-color: var(--Oxford-blue);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: black 0 3px 5px;
+  font-size: 1rem;
+  height: 40px;
+  padding: 0 10px;
+  pointer-events: auto;
+  width: auto;
+  border: 0;
+  transition: box-shadow 0.2s;
+}
+
+.delete-sub:hover {
+  box-shadow: #545677ad 0 3px 8px;
+}

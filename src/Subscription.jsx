@@ -1,5 +1,3 @@
-import AddSubForm from "./AddSubForm.jsx";
-
 function Subscription() {
   return (
     <div className="subscription-card">
@@ -16,11 +14,10 @@ function Subscription() {
       <p>Subscription Renewal Date:</p>
       <button>Edit ✏️</button>
       <button>Delete 🗑️</button>
-      <div>
-        <AddSubForm />
-      </div>
     </div>
   );
 }
 
 export default Subscription;
+
+//TODO: This card displays all the information that the user submitted from the form. Edit button will allow the user to edit any data. Delete button will delete the card.
