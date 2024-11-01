@@ -1,7 +1,14 @@
+import sun from "./assets/sun-svgrepo-com.svg";
+
+import moon from "./assets/moon-svgrepo-com.svg";
+
 function ChangeMode() {
   return (
     <div>
-      <button className="change-mode-btn">☀️/🌙</button>
+      <button className="change-mode-btn">
+        <img className="sun-svg" src={sun} alt="" />
+        <img className="moon-svg" src={moon} alt="" />
+      </button>
     </div>
   );
 }

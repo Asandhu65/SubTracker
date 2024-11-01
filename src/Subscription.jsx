@@ -1,23 +1,33 @@
+import pencil from "./assets/pencil-svgrepo-com.svg";
+import trash from "./assets/trash-svgrepo-com.svg";
+
 function Subscription() {
   return (
     <div className="subscription-card">
-      <span>
-        <img
-          src="https://icon.horse/icon/reddit.com"
-          alt="example.com icon"
-        ></img>
-        <p>Name:</p>
-      </span>
-      <p>Price:</p>
-      <p>Payment Method:</p>
-      <p>Total Spent:</p>
-      <p>Subscription Renewal Date:</p>
-      <button>Edit ✏️</button>
-      <button>Delete 🗑️</button>
+      <ol>
+        <li>
+          <img
+            className="site-icon"
+            src="https://icon.horse/icon/reddit.com"
+            alt="example.com icon"
+          ></img>
+          Name:
+        </li>
+        <li>Price:</li>
+        <li>Payment Method:</li>
+        <li>Total Spent:</li>
+        <li>Subscription Renewal Date:</li>
+      </ol>
+      <button className="edit-btn">
+        <img className="pencil-svg" src={pencil} alt="" />
+      </button>
+      <button className="delete-btn">
+        <img className="trash-svg" src={trash} alt="" />
+      </button>
     </div>
   );
 }
 
 export default Subscription;
 
-//TODO: This card displays all the information that the user submitted from the form. Edit button will allow the user to edit any data. Delete button will delete the card.
+//TODO: This card displays all the information that the user submitted from the form. Edit button will allow the user to edit any data. Delete button will delete the card. only show when mouse is hovered over card.

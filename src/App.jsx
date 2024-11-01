@@ -7,6 +7,7 @@ import ChangeMode from "./ChangeMode.jsx";
 function App() {
   return (
     <div>
+      <h1>Subscription Tracker</h1>
       <TotalSubs />
       <AddSubButton />
       <br />

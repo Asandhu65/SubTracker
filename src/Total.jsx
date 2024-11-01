@@ -1,5 +1,5 @@
 function TotalSubs() {
-  return <h1>Total:</h1>;
+  return <h2>Total:</h2>;
 }
 
 export default TotalSubs;
