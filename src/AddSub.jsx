@@ -1,22 +1,16 @@
-import { useState } from "react";
-import AddSubForm from "./AddSubForm.jsx";
 import logo from "./assets/add-plus-svgrepo-com.svg";
 
-function AddSubButton() {
-  const [showComponent, setShowComponent] = useState(false);
-
+function AddSubButton({ showForm, setShowForm }) {
   const handleClick = () => {
-    setShowComponent(!showComponent);
+    setShowForm(!showForm);
   };
 
   return (
     <div>
       <button className="add-sub" onClick={handleClick}>
-        {showComponent ? "" : ""}
         <img className="plus-svg" src={logo} alt="" />
-        Add Subscription{" "}
+        Add Subscription
       </button>
-      {showComponent && <AddSubForm />}
     </div>
   );
 }
