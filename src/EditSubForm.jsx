@@ -1,7 +1,7 @@
-function AddSubForm() {
+function EditSubForm() {
   return (
     <div className="form">
-      {/* <h2>Add New Subscription</h2> */}
+      <h1>test</h1>
       <form action="">
         <label htmlFor="subscription">Name</label>
         <input name="subscription" type="text" placeholder="Subscription" />
@@ -29,6 +29,6 @@ function AddSubForm() {
   );
 }
 
-export default AddSubForm;
+export default EditSubForm;
 
 // TODO: Add form validation for all inputs. Clicking submit will save data locally to users browser and display in a card with all the information that was submitted.

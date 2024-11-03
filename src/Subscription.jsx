@@ -8,7 +8,7 @@ function Subscription() {
         <li>
           <img
             className="site-icon"
-            src="https://icon.horse/icon/reddit.com"
+            src="https://icon.horse/icon/netflix.com"
             alt="example.com icon"
           ></img>
           Name:

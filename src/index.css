@@ -107,21 +107,15 @@ button.change-mode-btn {
 }
 
 button.edit-btn{
-  display: flex;
-  align-items: center;
-  justify-content: right;
-  margin-top: 10rem;
-  margin-left: 0px;
-  margin-right: -20px;
+  /* justify-content: flex-end;
+  display: flex; */
+  margin-left: 10rem;
 }
 
 button.delete-btn{
-  display: flex;
-  align-items: center;
-  justify-content: right;
-  margin-top: 10rem;
-  margin-left: -20px;
-  margin-right: 0px;
+  /* margin-right: 5rem;
+  justify-content: flex-end;
+  display: flex; */
 }
 
 img.sun-svg {
@@ -136,32 +130,30 @@ img.moon-svg {
 }
 
 .edit-btn {
-  
   background-color: transparent;
   border: none;
   cursor: pointer;
-  width: 100px;
-  height: 75px;
-  padding: 0px;
-
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  margin-top: 10rem;
 }
 
 .delete-btn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  width: 100px;
-  height: 75px;
+  width: 45px;
+  height: 45px;
   padding: 0px;
   margin-top: 10rem;
+  
 }
 
 img.pencil-svg{
   width: 2rem;
   height: 2rem;
+
 }
 
 img.trash-svg{
@@ -182,11 +174,10 @@ img.trash-svg:hover{
   background: var(--French-grey);
   border-radius: 10px;
   color: #000717;
-  width: 50%;
+  width: 550px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  margin: 0;
+  padding: 0.5rem;
 }
 
 .subscription-card li{
@@ -195,3 +186,53 @@ img.trash-svg:hover{
   list-style-type: none;
 }
 
+.form {
+  background: var(--French-grey);
+  border-radius: 10px;
+  color: #000717;
+  width: 550px;
+  padding: 0.5rem;
+}
+
+.form input {
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 15px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 25rem;
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+
+input.submit-btn{
+  background-color: var(--Oxford-blue);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: black 0 3px 5px;
+  font-size: 1rem;
+  height: 45px;
+  padding: 0px 15px;
+  pointer-events: auto;
+  width: 32.5rem;
+  border: 0;
+  transition: box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  margin: 15px;
+}
+
+h2.form{
+  font-size: 50px;
+display: flex;
+justify-content: start;
+align-items: center;
+}
