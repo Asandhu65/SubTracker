@@ -233,7 +233,7 @@ img.trash-svg:hover{
   align-items: center;
 }
 
-input.submit-btn{
+button.submit-btn{
   background-color: var(--Oxford-blue);
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
@@ -309,7 +309,7 @@ input.submit-btn{
   padding: 10px;
   display: flex;
   align-items: center;
-  width: 5rem;
+  width: 13rem;
   margin-top: 10px;
   margin-left: 18px;
   cursor: pointer;
@@ -329,7 +329,7 @@ input.submit-btn{
   padding: 10px;
   display: flex;
   align-items: center;
-  width: 8rem;
+  width: 6rem;
   margin-top: 10px;
   margin-left: 18px;
   cursor: pointer;

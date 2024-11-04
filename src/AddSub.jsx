@@ -1,4 +1,5 @@
 import logo from "./assets/add-plus-svgrepo-com.svg";
+import PropTypes from "prop-types";
 
 function AddSubButton({ showForm, setShowForm }) {
   const handleClick = () => {
@@ -14,6 +15,11 @@ function AddSubButton({ showForm, setShowForm }) {
     </div>
   );
 }
+
+AddSubButton.propTypes = {
+  showForm: PropTypes.bool.isRequired,
+  setShowForm: PropTypes.func.isRequired,
+};
 
 export default AddSubButton;
 

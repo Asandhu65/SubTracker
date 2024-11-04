@@ -30,4 +30,4 @@ function Subscription() {
 
 export default Subscription;
 
-//TODO: This card displays all the information that the user submitted from the form. Edit button(pencil) will allow the user to edit any data. Delete button(trash) will delete the card. only show when mouse is hovered over card.
+//TODO: This card displays all the information that the user submitted from the form. Edit button(pencil) will allow the user to edit any data. Delete button(trash) will delete the card. only show buttons when mouse is hovered over card.
