@@ -31,4 +31,4 @@ function EditSubForm() {
 
 export default EditSubForm;
 
-// TODO: Add form validation for all inputs. Clicking submit will save data locally to users browser and display in a card with all the information that was submitted.
+//TODO:  click the pencil to bring up edit form component and then allow user to edit any details. Once update details button is clicked update all all form entries in the card.

@@ -22,5 +22,3 @@ AddSubButton.propTypes = {
 };
 
 export default AddSubButton;
-
-// TODO: once form has been submitted hide the form component.

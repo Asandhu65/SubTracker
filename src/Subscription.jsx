@@ -1,7 +1,17 @@
+import { useEffect, useState } from "react";
 import pencil from "./assets/pencil-svgrepo-com.svg";
 import trash from "./assets/trash-svgrepo-com.svg";
 
 function Subscription() {
+  const [savedData, setSavedData] = useState("");
+
+  useEffect(() => {
+    const data = localStorage.getItem("formData");
+    if (data) {
+      setSavedData(JSON.parse(data));
+    }
+  }, []);
+
   return (
     <div className="subscription-card">
       <ol>
@@ -11,12 +21,12 @@ function Subscription() {
             src="https://icon.horse/icon/netflix.com"
             alt="example.com icon"
           ></img>
-          Name:
+          Name: {savedData.name}
         </li>
-        <li>Price:</li>
-        <li>Payment Method:</li>
-        <li>Total Spent:</li>
-        <li>Subscription Renewal Date:</li>
+        <li>Price: ${savedData.price}</li>
+        <li>Payment Method: {savedData.payment}</li>
+        <li>Subscription Renewal Date: {savedData.date}</li>
+        <li>Renewal Type: {savedData.renewal}</li>
       </ol>
       <button className="edit-btn">
         <img className="pencil-svg" src={pencil} alt="" />
@@ -30,4 +40,4 @@ function Subscription() {
 
 export default Subscription;
 
-//TODO: This card displays all the information that the user submitted from the form. Edit button(pencil) will allow the user to edit any data. Delete button(trash) will delete the card. only show buttons when mouse is hovered over card.
+//TODO: 1. Need to create new cards when form is submitted again. 2. Edit button(pencil) will allow the user to edit any data. Delete button(trash) will delete the card. 3. Only show buttons when mouse is hovered over card. 4. pull url from submitted data and use icon API to display icon from url.
