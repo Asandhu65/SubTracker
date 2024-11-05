@@ -2,7 +2,7 @@ import { useState } from "react";
 import close from "./assets/close-svgrepo-com.svg";
 import PropTypes from "prop-types";
 
-function AddSubForm({ showForm, setShowForm }) {
+function AddSubForm({ showForm, setShowForm, onSubmit }) {
   const [values, setValues] = useState({
     name: "",
     url: "",
@@ -40,6 +40,7 @@ function AddSubForm({ showForm, setShowForm }) {
       localStorage.setItem("formData", JSON.stringify(values));
       console.log("Form submitted", values);
       console.log(values.url);
+      onSubmit(values);
       setShowForm(false);
     }
   };
@@ -154,6 +155,7 @@ function AddSubForm({ showForm, setShowForm }) {
 AddSubForm.propTypes = {
   setShowForm: PropTypes.func.isRequired,
   showForm: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default AddSubForm;
