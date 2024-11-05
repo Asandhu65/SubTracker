@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import pencil from "./assets/pencil-svgrepo-com.svg";
 import trash from "./assets/trash-svgrepo-com.svg";
 
-function Subscription() {
+function Subscription({ trigger }) {
   const [savedData, setSavedData] = useState("");
 
   useEffect(() => {
@@ -10,7 +10,7 @@ function Subscription() {
     if (data) {
       setSavedData(JSON.parse(data));
     }
-  }, []);
+  }, [trigger]);
 
   return (
     <div className="subscription-card">

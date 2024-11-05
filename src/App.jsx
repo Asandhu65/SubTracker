@@ -14,7 +14,7 @@ function App() {
       <h1>Subscription Tracker</h1>
       <TotalSubs />
       <AddSubButton showForm={showForm} setShowForm={setShowForm} />
-      {showForm && <AddSubForm showForm={showForm} setShowForm={setShowForm} />}
+      {showForm && <AddSubForm/> showForm={showForm} setsh
       <br />
       <DeleteSubButton />
       <Subscription />
