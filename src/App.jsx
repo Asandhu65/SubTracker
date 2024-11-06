@@ -48,6 +48,12 @@ function App() {
     setIsEditing(false);
   };
 
+  const handleDelete = id => {
+    const updatedSubmissions = submissions.filter(sub => sub.id !== id);
+    setSubmissions(updatedSubmissions);
+    localStorage.setItem("subscriptions", JSON.stringify(updatedSubmissions));
+  };
+
   return (
     <div>
       <ChangeMode />
@@ -76,6 +82,7 @@ function App() {
           key={submission.id}
           data={submission}
           onEdit={() => handleEditClick(submission)}
+          onDelete={() => handleDelete(submission.id)}
         />
       ))}
     </div>

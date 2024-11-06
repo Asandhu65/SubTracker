@@ -368,3 +368,7 @@ button.close-x{
   border: none;
   float: right;
 }
+
+.site-icon {
+width: 10%;
+}
