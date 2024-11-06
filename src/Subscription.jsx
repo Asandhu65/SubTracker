@@ -1,18 +1,8 @@
-// import { useEffect, useState } from "react";
 import pencil from "./assets/pencil-svgrepo-com.svg";
 import trash from "./assets/trash-svgrepo-com.svg";
 import PropTypes from "prop-types";
 
-function Subscription({ data }) {
-  // const [savedData, setSavedData] = useState("");
-
-  // useEffect(() => {
-  //   const data = localStorage.getItem("formData");
-  //   if (data) {
-  //     setSavedData(JSON.parse(data));
-  //   }
-  // }, []);
-
+function Subscription({ data, onEdit }) {
   return (
     <div className="subscription-card">
       <ol>
@@ -29,7 +19,7 @@ function Subscription({ data }) {
         <li>Subscription Renewal Date: {data.date}</li>
         <li>Renewal Type: {data.renewal}</li>
       </ol>
-      <button className="edit-btn">
+      <button className="edit-btn" onClick={onEdit}>
         <img className="pencil-svg" src={pencil} alt="" />
       </button>
       <button className="delete-btn">
@@ -40,9 +30,16 @@ function Subscription({ data }) {
 }
 
 Subscription.propTypes = {
-  data: PropTypes.any.isRequired,
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    payment: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    renewal: PropTypes.string.isRequired,
+  }).isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 export default Subscription;
 
-//TODO: 2. Edit button(pencil) will allow the user to edit any data. Delete button(trash) will delete the card. 3. Only show buttons when mouse is hovered over card. 4. pull url from submitted data and use icon API to display icon from url.
+//TODO: Delete button(trash) will delete the card. 3. Only show buttons when mouse is hovered over card. 4. pull url from submitted data and use icon API to display icon from url.

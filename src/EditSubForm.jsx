@@ -1,34 +1,106 @@
-function EditSubForm() {
+import PropTypes from "prop-types";
+import close from "./assets/close-svgrepo-com.svg";
+import { useState } from "react";
+
+function EditSubForm({ data, onUpdate, setIsEditing }) {
+  const [formData, setFormData] = useState(data);
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onUpdate({ ...formData, price: parseFloat(formData.price) });
+    setIsEditing(false);
+  };
+
   return (
     <div className="form">
-      <h1>test</h1>
-      <form action="">
-        <label htmlFor="subscription">Name</label>
-        <input name="subscription" type="text" placeholder="Subscription" />
-        <br />
-        <input type="text" placeholder="Price" />
-        <br />
-        <label htmlFor="payment">Payment Method</label>
-        <select name="payment" id="payment">
-          <option value="visa">Visa</option>
-          <option value="mastercard">Mastercard</option>
-          <option value="paypal">Paypal</option>
-          <option value="amex">Amex</option>
-        </select>
-        <br />
-        <label htmlFor="renewal-type">Renewal Type</label>
-        <select name="renewal-type" id="renewal-type">
-          <option value="monthly">Monthly</option>
-          <option value="yearly">Yearly</option>
-        </select>
-        <br />
-        <input type="date" />
-        <input className="submit-btn" type="submit" />
+      <button onClick={() => setIsEditing(false)} className="close-x">
+        <img src={close} alt="x" className="x-btn" />
+      </button>
+      <h1>Edit Form</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name
+          <input
+            name="name"
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </label>
+        <div className="url-name">
+          <label>URL</label>
+          <input
+            name="url"
+            type="url"
+            pattern="https://.*"
+            size="30"
+            value={formData.url}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="price-name">
+          <label>Price</label>
+          <input
+            name="price"
+            type="number"
+            value={formData.price}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="payment-name">
+          <label>Payment Method</label>
+          <select
+            name="payment"
+            required
+            value={formData.payment}
+            onChange={handleChange}
+          >
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+            <option value="Paypal">Paypal</option>
+            <option value="Apple Pay">Apple Pay</option>
+            <option value="Amex">Amex</option>
+          </select>
+        </div>
+        <div className="renewal-name">
+          <label>Renewal Type</label>
+          <select
+            name="renewal"
+            required
+            value={formData.renewal}
+            onChange={handleChange}
+          >
+            <option value="Monthly">Monthly</option>
+            <option value="Annual">Annual</option>
+          </select>
+        </div>
+        <div className="renewal-date">
+          <label>Renewal Date</label>
+          <input
+            name="date"
+            type="date"
+            required
+            value={formData.date}
+            onChange={handleChange}
+          />
+        </div>
+        <button className="submit-btn" type="submit">
+          Update Subscription
+        </button>
       </form>
     </div>
   );
 }
 
-export default EditSubForm;
+EditSubForm.propTypes = {
+  data: PropTypes.object.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  setIsEditing: PropTypes.func.isRequired,
+};
 
-//TODO:  click the pencil to bring up edit form component and then allow user to edit any details. Once update details button is clicked update all all form entries in the card.
+export default EditSubForm;

@@ -90,7 +90,7 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
             <label>Price</label>
             <input
               name="price"
-              type="text"
+              type="number"
               placeholder="Price"
               value={errors.price ? "Please enter a price." : values.price}
               onChange={handleChange}
