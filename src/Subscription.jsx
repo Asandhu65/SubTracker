@@ -1,8 +1,39 @@
+import { useEffect, useState } from "react";
 import pencil from "./assets/pencil-svgrepo-com.svg";
 import trash from "./assets/trash-svgrepo-com.svg";
 import PropTypes from "prop-types";
 
 function Subscription({ data, onEdit, onDelete }) {
+  const [totalSpent, setTotalSpent] = useState(data.price);
+
+  useEffect(() => {
+    const storedStartDate = localStorage.getItem(
+      `${data.name}-subscriptionStartDate`
+    );
+    const startDate = storedStartDate ? new Date(storedStartDate) : new Date();
+
+    if (!storedStartDate) {
+      localStorage.setItem(`${data.name}-subscriptionStartDate`, startDate);
+    }
+
+    const updateTotalSpent = () => {
+      const now = new Date();
+      const daysSinceStart = Math.floor(
+        (now - startDate) / (1000 * 60 * 60 * 24)
+      );
+      const monthsElapsed = Math.floor(daysSinceStart / 30);
+
+      const newTotalSpent = data.price * (monthsElapsed + 1);
+      setTotalSpent(newTotalSpent);
+      localStorage.setItem(`${data.name}-totalSpent`, newTotalSpent);
+    };
+
+    updateTotalSpent();
+    const intervalId = setInterval(updateTotalSpent, 30 * 24 * 60 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
+  }, [data.name, data.price]);
+
   const formatDate = dateString => {
     const date = new Date(dateString);
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -38,6 +69,7 @@ function Subscription({ data, onEdit, onDelete }) {
         {data.date && (
           <li>Subscription Renewal Date: {formatDate(data.date)}</li>
         )}
+        <li>Spent since start: ${totalSpent.toFixed(2)}</li>
       </ol>
       <button className="edit-btn" onClick={onEdit}>
         <img className="pencil-svg" src={pencil} alt="" />
