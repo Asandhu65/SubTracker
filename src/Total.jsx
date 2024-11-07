@@ -1,7 +1,17 @@
-function TotalSubs() {
-  return <h2>Total:</h2>;
+import PropTypes from "prop-types";
+
+function TotalSubs({ totalMonthlyPrice, totalAnnualPrice }) {
+  return (
+    <div>
+      <h2>Total Monthly: ${totalMonthlyPrice.toFixed(2)}</h2>
+      <h2>Total Annual: ${totalAnnualPrice.toFixed(2)}</h2>
+    </div>
+  );
 }
 
 export default TotalSubs;
 
-// TODO: Display the total of all the subscriptions that have been saved.
+TotalSubs.propTypes = {
+  totalMonthlyPrice: PropTypes.number.isRequired,
+  totalAnnualPrice: PropTypes.number.isRequired,
+};

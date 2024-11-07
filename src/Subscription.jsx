@@ -11,21 +11,33 @@ function Subscription({ data, onEdit, onDelete }) {
     return `${month}-${day}-${year}`;
   };
 
+  const extractDomain = url => {
+    try {
+      const hostName = new URL(url).hostname;
+      return hostName.replace(/^www\./, "");
+    } catch {
+      return null;
+    }
+  };
+
   return (
     <div className="subscription-card">
       <ol>
         <li>
           <img
             className="site-icon"
-            src={`https://icon.horse/icon/${data.name.toLowerCase()}.com/`}
+            src={`https://icon.horse/icon/${extractDomain(data.url)}/`}
             alt={`${data.name} icon`}
           ></img>
           {data.name}
         </li>
-        <li>Price: ${data.price}</li>
+        <li>
+          Price: ${data.price} <span>{data.renewal}</span>
+        </li>
         <li>Payment Method: {data.payment}</li>
-        <li>Subscription Renewal Date: {formatDate(data.date)}</li>
-        <li>Renewal Type: {data.renewal}</li>
+        {data.date && (
+          <li>Subscription Renewal Date: {formatDate(data.date)}</li>
+        )}
       </ol>
       <button className="edit-btn" onClick={onEdit}>
         <img className="pencil-svg" src={pencil} alt="" />
@@ -44,6 +56,7 @@ Subscription.propTypes = {
     payment: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     renewal: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
   }).isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
@@ -51,4 +64,4 @@ Subscription.propTypes = {
 
 export default Subscription;
 
-//TODO: 3. Only show buttons when mouse is hovered over card.
+//TODO: ~~ Only show buttons when mouse is hovered over card. ~~

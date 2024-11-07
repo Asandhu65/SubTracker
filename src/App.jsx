@@ -54,11 +54,27 @@ function App() {
     localStorage.setItem("subscriptions", JSON.stringify(updatedSubmissions));
   };
 
+  const totalMonthlyPrice = submissions
+    .filter(sub => sub.renewal === "Monthly")
+    .reduce((total, sub) => total + sub.price, 0);
+
+  const totalAnnualPrice = submissions
+    .filter(sub => sub.renewal === "Annually")
+    .reduce((total, sub) => total + sub.price, 0);
+
+  const handleDeleteAll = () => {
+    setSubmissions([]);
+    localStorage.removeItem("subscriptions");
+  };
+
   return (
     <div>
       <ChangeMode />
       <h1>Subscription Tracker</h1>
-      <TotalSubs />
+      <TotalSubs
+        totalMonthlyPrice={totalMonthlyPrice}
+        totalAnnualPrice={totalAnnualPrice}
+      />
       <AddSubButton showForm={showForm} setShowForm={setShowForm} />
 
       {showForm && (
@@ -76,7 +92,9 @@ function App() {
         />
       )}
       <br />
-      <DeleteSubButton />
+      {submissions.length >= 2 && (
+        <DeleteSubButton onDelete={handleDeleteAll} />
+      )}
       {submissions.map(submission => (
         <Subscription
           key={submission.id}

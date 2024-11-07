@@ -16,7 +16,18 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+
+    const formattedValue =
+      name === "name"
+        ? value
+            .split(" ")
+            .map(
+              word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+            )
+            .join(" ")
+        : value;
+
+    setValues({ ...values, [name]: formattedValue });
   };
 
   const handleFocus = e => {
@@ -128,7 +139,7 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
                 Choose renewal option...
               </option>
               <option value="Monthly">Monthly</option>
-              <option value="Annual">Annual</option>
+              <option value="Annually">Annually</option>
             </select>
           </div>
           <div className="renewal-date">
@@ -136,7 +147,6 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
             <input
               name="date"
               type="date"
-              required
               value={values.date}
               onChange={handleChange}
             />

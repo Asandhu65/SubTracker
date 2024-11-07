@@ -7,7 +7,18 @@ function EditSubForm({ data, onUpdate, setIsEditing }) {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    const formattedValue =
+      name === "name"
+        ? value
+            .split(" ")
+            .map(
+              word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+            )
+            .join(" ")
+        : value;
+
+    setFormData({ ...formData, [name]: formattedValue });
   };
 
   const handleSubmit = e => {
@@ -76,7 +87,7 @@ function EditSubForm({ data, onUpdate, setIsEditing }) {
             onChange={handleChange}
           >
             <option value="Monthly">Monthly</option>
-            <option value="Annual">Annual</option>
+            <option value="Annually">Annually</option>
           </select>
         </div>
         <div className="renewal-date">
@@ -84,7 +95,6 @@ function EditSubForm({ data, onUpdate, setIsEditing }) {
           <input
             name="date"
             type="date"
-            required
             value={formData.date}
             onChange={handleChange}
           />
