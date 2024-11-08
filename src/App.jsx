@@ -6,12 +6,14 @@ import ChangeMode from "./ChangeMode.jsx";
 import { useEffect, useState } from "react";
 import AddSubForm from "./AddSubForm.jsx";
 import EditSubForm from "./EditSubForm.jsx";
+import ConfirmDeleteAll from "./ConfirmDeleteAll.jsx";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [submissions, setSubmissions] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingData, setEditingData] = useState(null);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     const storedSubscriptions = JSON.parse(
@@ -62,9 +64,18 @@ function App() {
     .filter(sub => sub.renewal === "Annually")
     .reduce((total, sub) => total + sub.price, 0);
 
-  const handleDeleteAll = () => {
+  const handleDeleteAllClick = () => {
+    setShowConfirm(true);
+  };
+
+  const handleConfirmDeleteAll = () => {
     setSubmissions([]);
     localStorage.removeItem("subscriptions");
+    setShowConfirm(false);
+  };
+
+  const handleCancelDeleteAll = () => {
+    setShowConfirm(false);
   };
 
   return (
@@ -93,7 +104,7 @@ function App() {
       )}
       <br />
       {submissions.length >= 2 && (
-        <DeleteSubButton onDelete={handleDeleteAll} />
+        <DeleteSubButton onDelete={handleDeleteAllClick} />
       )}
       {submissions.map(submission => (
         <Subscription
@@ -103,6 +114,14 @@ function App() {
           onDelete={() => handleDelete(submission.id)}
         />
       ))}
+
+      {showConfirm && (
+        <ConfirmDeleteAll
+          message="Are you sure you want to delete all subscriptions?"
+          onConfirm={handleConfirmDeleteAll}
+          onCancel={handleCancelDeleteAll}
+        />
+      )}
     </div>
   );
 }

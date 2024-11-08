@@ -21,18 +21,28 @@ function Subscription({ data, onEdit, onDelete }) {
       const daysSinceStart = Math.floor(
         (now - startDate) / (1000 * 60 * 60 * 24)
       );
-      const monthsElapsed = Math.floor(daysSinceStart / 30);
 
-      const newTotalSpent = data.price * (monthsElapsed + 1);
+      let periodsElapsed;
+      if (data.renewal === "Monthly") {
+        periodsElapsed = Math.floor(daysSinceStart / 30);
+      } else if (data.renewal === "Annually") {
+        periodsElapsed = Math.floor(daysSinceStart / 365);
+      }
+
+      const newTotalSpent = data.price * (periodsElapsed + 1);
       setTotalSpent(newTotalSpent);
       localStorage.setItem(`${data.name}-totalSpent`, newTotalSpent);
     };
 
     updateTotalSpent();
-    const intervalId = setInterval(updateTotalSpent, 30 * 24 * 60 * 60 * 1000);
+    const intervalDuration =
+      data.renewal === "Monthly"
+        ? 30 * 24 * 60 * 60 * 1000
+        : 365 * 24 * 60 * 60 * 1000;
+    const intervalId = setInterval(updateTotalSpent, intervalDuration);
 
     return () => clearInterval(intervalId);
-  }, [data.name, data.price]);
+  }, [data.name, data.price, data.renewal]);
 
   const formatDate = dateString => {
     const date = new Date(dateString);
@@ -96,4 +106,4 @@ Subscription.propTypes = {
 
 export default Subscription;
 
-//TODO: ~~ Only show buttons when mouse is hovered over card. ~~
+//TODO: ~~ Only show buttons when mouse is hovered over card. Add a way for the user to visit the site and cancel subscription. Implement dark and light mode, Finish styling and make sure site is mobile responsive.~~

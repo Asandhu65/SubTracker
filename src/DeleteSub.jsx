@@ -13,5 +13,3 @@ DeleteSubButton.propTypes = {
 };
 
 export default DeleteSubButton;
-
-//  TODO: Maybe have a pop up asking "Are you sure you want to delete all your saved subscriptions?"
