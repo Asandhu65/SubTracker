@@ -2,7 +2,7 @@ import { useState } from "react";
 import close from "./assets/close-svgrepo-com.svg";
 import PropTypes from "prop-types";
 
-function AddSubForm({ showForm, setShowForm, onSubmit }) {
+function AddSubForm({ showForm, setShowForm, onSubmit, onCurrencyChange }) {
   const [values, setValues] = useState({
     name: "",
     url: "",
@@ -10,6 +10,7 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
     payment: "",
     renewal: "",
     date: "",
+    currency: "USD",
   });
 
   const [errors, setErrors] = useState({});
@@ -28,6 +29,10 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
         : value;
 
     setValues({ ...values, [name]: formattedValue });
+
+    if (name === "currency") {
+      onCurrencyChange(value);
+    }
   };
 
   const handleFocus = e => {
@@ -49,8 +54,6 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
     e.preventDefault();
     if (validate()) {
       localStorage.setItem("formData", JSON.stringify(values));
-      console.log("Form submitted", values);
-      console.log(values.url);
       onSubmit(values);
       setShowForm(false);
     }
@@ -109,6 +112,22 @@ function AddSubForm({ showForm, setShowForm, onSubmit }) {
               style={{ color: errors.price ? "red" : "initial" }}
             />
           </div>
+          <div>
+            <label>
+              Currency:
+              <select
+                name="currency"
+                value={values.currency}
+                onChange={handleChange}
+                required
+              >
+                <option value="$">USD - US Dollar</option>
+                <option value="€">EUR - Euro</option>
+                <option value="£">GBP - British Pound</option>
+                <option value="¥">JPY - Japanese Yen</option>
+              </select>
+            </label>
+          </div>
           <div className="payment-name">
             <label>Payment Method</label>
             <select
@@ -166,6 +185,7 @@ AddSubForm.propTypes = {
   setShowForm: PropTypes.func.isRequired,
   showForm: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onCurrencyChange: PropTypes.func.isRequired,
 };
 
 export default AddSubForm;

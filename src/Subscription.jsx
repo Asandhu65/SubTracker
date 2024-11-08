@@ -3,8 +3,15 @@ import pencil from "./assets/pencil-svgrepo-com.svg";
 import trash from "./assets/trash-svgrepo-com.svg";
 import PropTypes from "prop-types";
 
-function Subscription({ data, onEdit, onDelete }) {
+function Subscription({ data, onEdit, onDelete, currency }) {
   const [totalSpent, setTotalSpent] = useState(data.price);
+
+  const formatPriceYen = price => {
+    if (currency === "¥") {
+      return price.toFixed(0);
+    }
+    return price.toFixed(2);
+  };
 
   useEffect(() => {
     const storedStartDate = localStorage.getItem(
@@ -73,13 +80,28 @@ function Subscription({ data, onEdit, onDelete }) {
           {data.name}
         </li>
         <li>
-          Price: ${data.price} <span>{data.renewal}</span>
+          Price: {data.currency}
+          {formatPriceYen(data.price)}
+          <span> {data.renewal}</span>
         </li>
         <li>Payment Method: {data.payment}</li>
         {data.date && (
           <li>Subscription Renewal Date: {formatDate(data.date)}</li>
         )}
-        <li>Spent since start: ${totalSpent.toFixed(2)}</li>
+        <li>
+          Spent since start: {data.currency}
+          {formatPriceYen(totalSpent)}
+        </li>
+        {data.url && (
+          <a
+            href={data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cancel-link"
+          >
+            Visit Site
+          </a>
+        )}
       </ol>
       <button className="edit-btn" onClick={onEdit}>
         <img className="pencil-svg" src={pencil} alt="" />
@@ -99,11 +121,17 @@ Subscription.propTypes = {
     date: PropTypes.string.isRequired,
     renewal: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
   }).isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  currency: PropTypes.string.isRequired,
 };
 
 export default Subscription;
 
-//TODO: ~~ Only show buttons when mouse is hovered over card. Add a way for the user to visit the site and cancel subscription. Implement dark and light mode, Finish styling and make sure site is mobile responsive.~~
+// ~~ Only show buttons when mouse is hovered over card.
+// Implement dark and light mode and automatically match the users browser settings,
+// Finish styling and make sure site is mobile responsive.
+// Maybe create a way for user to group types of cards together: entertainment, health, food etc.~~
+// ~~ Maybe figure out a way to show when the next renewal date is for the sub if the user enters the date they subscribed? for ex. "Enter your subscription renewal date so that "

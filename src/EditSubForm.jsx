@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import close from "./assets/close-svgrepo-com.svg";
 import { useState } from "react";
 
-function EditSubForm({ data, onUpdate, setIsEditing }) {
+function EditSubForm({ data, onUpdate, setIsEditing, onCurrencyChange }) {
   const [formData, setFormData] = useState(data);
 
   const handleChange = e => {
@@ -19,6 +19,10 @@ function EditSubForm({ data, onUpdate, setIsEditing }) {
         : value;
 
     setFormData({ ...formData, [name]: formattedValue });
+
+    if (name === "currency") {
+      onCurrencyChange(value);
+    }
   };
 
   const handleSubmit = e => {
@@ -62,6 +66,22 @@ function EditSubForm({ data, onUpdate, setIsEditing }) {
             value={formData.price}
             onChange={handleChange}
           />
+        </div>
+        <div>
+          <label>
+            Currency:
+            <select
+              name="currency"
+              value={formData.currency}
+              onChange={handleChange}
+              required
+            >
+              <option value="$">USD - US Dollar</option>
+              <option value="€">EUR - Euro</option>
+              <option value="£">GBP - British Pound</option>
+              <option value="¥">JPY - Japanese Yen</option>
+            </select>
+          </label>
         </div>
         <div className="payment-name">
           <label>Payment Method</label>
@@ -111,6 +131,7 @@ EditSubForm.propTypes = {
   data: PropTypes.object.isRequired,
   onUpdate: PropTypes.func.isRequired,
   setIsEditing: PropTypes.func.isRequired,
+  onCurrencyChange: PropTypes.func.isRequired,
 };
 
 export default EditSubForm;

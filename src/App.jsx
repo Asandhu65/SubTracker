@@ -14,6 +14,7 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editingData, setEditingData] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [currency, setCurrency] = useState("$");
 
   useEffect(() => {
     const storedSubscriptions = JSON.parse(
@@ -56,6 +57,10 @@ function App() {
     localStorage.setItem("subscriptions", JSON.stringify(updatedSubmissions));
   };
 
+  const handleCurrencyChange = newCurrency => {
+    setCurrency(newCurrency);
+  };
+
   const totalMonthlyPrice = submissions
     .filter(sub => sub.renewal === "Monthly")
     .reduce((total, sub) => total + sub.price, 0);
@@ -85,6 +90,7 @@ function App() {
       <TotalSubs
         totalMonthlyPrice={totalMonthlyPrice}
         totalAnnualPrice={totalAnnualPrice}
+        currency={currency}
       />
       <AddSubButton showForm={showForm} setShowForm={setShowForm} />
 
@@ -93,6 +99,7 @@ function App() {
           showForm={showForm}
           setShowForm={setShowForm}
           onSubmit={handleFormSubmit}
+          onCurrencyChange={handleCurrencyChange}
         />
       )}
       {isEditing && (
@@ -100,6 +107,7 @@ function App() {
           data={editingData}
           onUpdate={handleUpdate}
           setIsEditing={setIsEditing}
+          onCurrencyChange={handleCurrencyChange}
         />
       )}
       <br />
@@ -112,6 +120,7 @@ function App() {
           data={submission}
           onEdit={() => handleEditClick(submission)}
           onDelete={() => handleDelete(submission.id)}
+          currency={submission.currency}
         />
       ))}
 
