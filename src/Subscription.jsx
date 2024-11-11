@@ -69,46 +69,46 @@ function Subscription({ data, onEdit, onDelete, currency }) {
   };
 
   return (
-    <div className="subscription-card">
-      <ol>
-        <li>
-          <img
-            className="site-icon"
-            src={`https://icon.horse/icon/${extractDomain(data.url)}/`}
-            alt={`${data.name} icon`}
-          ></img>
-          {data.name}
-        </li>
-        <li>
-          Price: {data.currency}
-          {formatPriceYen(data.price)}
-          <span> {data.renewal}</span>
-        </li>
-        <li>Payment Method: {data.payment}</li>
-        {data.date && (
-          <li>Subscription Renewal Date: {formatDate(data.date)}</li>
-        )}
-        <li>
-          Spent since start: {data.currency}
-          {formatPriceYen(totalSpent)}
-        </li>
-        {data.url && (
-          <a
-            href={data.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cancel-link"
-          >
-            Visit Site
-          </a>
-        )}
-      </ol>
-      <button className="edit-btn" onClick={onEdit}>
-        <img className="pencil-svg" src={pencil} alt="" />
-      </button>
-      <button className="delete-btn" onClickCapture={onDelete}>
-        <img className="trash-svg" src={trash} alt="" />
-      </button>
+    <div className="subscription-card-container">
+      <div className="subscription-card">
+        <ol>
+          <li className="card-title">
+            <img
+              className="site-icon"
+              src={`https://icon.horse/icon/${extractDomain(data.url)}/`}
+              alt={`${data.name} icon`}
+            ></img>
+            {data.name}
+          </li>
+          <li className="price-title">
+            {data.currency}
+            {formatPriceYen(data.price)}
+            <span> {data.renewal}</span>
+          </li>
+          <li>Payment Method: {data.payment}</li>
+          {data.date && <li>Renewal Date: {formatDate(data.date)}</li>}
+          <li>
+            Spent since start: {data.currency}
+            {formatPriceYen(totalSpent)}
+          </li>
+          {data.url && (
+            <a
+              href={data.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cancel-link"
+            >
+              Visit Site
+            </a>
+          )}
+        </ol>
+        <button className="delete-btn" onClickCapture={onDelete}>
+          <img className="trash-svg" src={trash} alt="" />
+        </button>
+        <button className="edit-btn" onClick={onEdit}>
+          <img className="pencil-svg" src={pencil} alt="" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -130,8 +130,5 @@ Subscription.propTypes = {
 
 export default Subscription;
 
-// ~~ Only show buttons when mouse is hovered over card.
 // Implement dark and light mode and automatically match the users browser settings,
 // Finish styling and make sure site is mobile responsive.
-// Maybe create a way for user to group types of cards together: entertainment, health, food etc.~~
-// ~~ Maybe figure out a way to show when the next renewal date is for the sub if the user enters the date they subscribed? for ex. "Enter your subscription renewal date so that "

@@ -7,7 +7,7 @@ function AddSubButton({ showForm, setShowForm }) {
   };
 
   return (
-    <div>
+    <div className="add-sub-btn-container">
       <button className="add-sub" onClick={handleClick}>
         <img className="plus-svg" src={logo} alt="" />
         Add Subscription

@@ -64,7 +64,7 @@ function AddSubForm({ showForm, setShowForm, onSubmit, onCurrencyChange }) {
   };
 
   return (
-    <div className="form">
+    <div className="form-container">
       <button onClick={handleClick} className="close-x">
         <img src={close} alt="x" className="x-btn" />
       </button>
@@ -112,7 +112,7 @@ function AddSubForm({ showForm, setShowForm, onSubmit, onCurrencyChange }) {
               style={{ color: errors.price ? "red" : "initial" }}
             />
           </div>
-          <div>
+          <div className="currency-name">
             <label>
               Currency:
               <select
