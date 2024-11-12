@@ -114,15 +114,17 @@ function App() {
       {submissions.length >= 2 && (
         <DeleteSubButton onDelete={handleDeleteAllClick} />
       )}
-      {submissions.map(submission => (
-        <Subscription
-          key={submission.id}
-          data={submission}
-          onEdit={() => handleEditClick(submission)}
-          onDelete={() => handleDelete(submission.id)}
-          currency={submission.currency}
-        />
-      ))}
+      <div className="subscription-card-container">
+        {submissions.map(submission => (
+          <Subscription
+            key={submission.id}
+            data={submission}
+            onEdit={() => handleEditClick(submission)}
+            onDelete={() => handleDelete(submission.id)}
+            currency={submission.currency}
+          />
+        ))}
+      </div>
 
       {showConfirm && (
         <ConfirmDeleteAll

@@ -10,7 +10,7 @@ function AddSubForm({ showForm, setShowForm, onSubmit, onCurrencyChange }) {
     payment: "",
     renewal: "",
     date: "",
-    currency: "USD",
+    currency: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -121,6 +121,9 @@ function AddSubForm({ showForm, setShowForm, onSubmit, onCurrencyChange }) {
                 onChange={handleChange}
                 required
               >
+                <option value="" disabled hidden>
+                  Choose a currency...
+                </option>
                 <option value="$">USD - US Dollar</option>
                 <option value="€">EUR - Euro</option>
                 <option value="£">GBP - British Pound</option>

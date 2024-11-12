@@ -20,6 +20,8 @@ html {
 *:before,
 *:after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body,
@@ -87,6 +89,7 @@ h2 {
   display: flex;
   align-items: center;
   gap: 8px;
+  border: var(--French-grey) 1px solid;
 }
 
 .add-sub-btn-container {
@@ -118,6 +121,7 @@ h2 {
   display: flex;
   align-items: center;
   gap: 8px;
+  border: var(--French-grey) 1px solid;
 }
 
 .delete-sub-btn-container {
@@ -178,8 +182,9 @@ img.moon-svg {
   border-radius: 10px;
   color: #000717;
   width: 350px;
+  margin: 10px;
+  box-sizing: border-box;
   overflow: hidden;
-  margin: 20px;
 }
 
 .subscription-card ol {
