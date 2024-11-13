@@ -11,11 +11,11 @@ function TotalSubs({ totalMonthlyPrice, totalAnnualPrice, currency }) {
   return (
     <div>
       <h2>
-        Total Monthly: {currency}
+        Total Monthly Spending: {currency}
         {formatPriceYen(totalMonthlyPrice)}
       </h2>
       <h2>
-        Total Annual: {currency}
+        Total Annual Spending: {currency}
         {formatPriceYen(totalAnnualPrice)}
       </h2>
     </div>

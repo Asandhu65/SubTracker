@@ -2,7 +2,6 @@ import Subscription from "./Subscription.jsx";
 import TotalSubs from "./Total.jsx";
 import AddSubButton from "./AddSub.jsx";
 import DeleteSubButton from "./DeleteSub.jsx";
-import ChangeMode from "./ChangeMode.jsx";
 import { useEffect, useState } from "react";
 import AddSubForm from "./AddSubForm.jsx";
 import EditSubForm from "./EditSubForm.jsx";
@@ -85,7 +84,6 @@ function App() {
 
   return (
     <div>
-      <ChangeMode />
       <h1>Subscription Tracker</h1>
       <TotalSubs
         totalMonthlyPrice={totalMonthlyPrice}
