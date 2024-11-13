@@ -129,6 +129,3 @@ Subscription.propTypes = {
 };
 
 export default Subscription;
-
-// Implement dark and light mode and automatically match the users browser settings,
-// Finish styling and make sure site is mobile responsive.
